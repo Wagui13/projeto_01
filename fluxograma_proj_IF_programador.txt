@@ -1,0 +1,40 @@
+PROJETO "PROGRAMADOR"
+
+As ações iniciais podem ser as mesmas do código base (tirando a parte de tomar remédio)
+Definir horário de chegada ao trabalho (ex:7h) e outro para o projeto(ex:8h).
+
+Ao entrar na opção IR TRABALHAR abrir opções de escolha do tipo de transporte
+Tipo de transporte:
+1. Carro
+2. Ônibus
+3. Uber ou outra sugestão
+
+Depois da escolha do transporte colocar um randomico para gerar numeros e de acordo com o numero indicar as ações que vão ocorrer de acordo com transporte escolhido.
+No trajeto:
+1.Carro
+1.1 Quebra do carro / Pneu furado / Roubo do carro / Pane seca.
+2.1 Quebra do ônibus / Atraso / Ônibus errado.
+3.1 Quebra do carro / Não apareceu / Atraso / Pneu furado / Pane seca / 
+
+Então ir definir um tempo de perda para cada evento e ir descontando (se invadir o horário de início do projeto descontar da contagem regressiva do mesmo).
+
+No trabalho, na execução do projeto:
+Eventos randômicos também (ou escolha de opções diretamente) que vão gerar ônus no tempo do projeto.
+1. Rede com problema.
+2. Interrupções de colegas de trabalho.
+3. Pesquisas sobre como realizar determinada tarefa do projeto.
+4. Queda de energia (parte do projeto sendo perdido por esse fato).
+
+E para a pessoa do programador:
+Barra de sono:
+1. Vai pedir café
+2. Vai tomar café
+3. Vai fazer uma pausa para descansar.
+
+Barra energia:
+1. Vai se alimentar
+2. Vai descansar
+3. E outros
+
+Como vamos definir o tempo que levará a execução do projeto? Vai ser um tempo pre definido?
+
