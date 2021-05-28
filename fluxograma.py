@@ -1,10 +1,9 @@
+from projeto_prova import telaInicial
 #Elton e Wagner, eu tentei transformar o fluxograma em condicional, só pra irmos organizando as ideias de quais classes e funções vamos usar
 #deem feedback hehe
 #aqui é o inicio do jogo
-print('\n'*20)
-print('-='*30)
-print('\t\tBem Vindo(a) Ao Dev Life')
-print('-='*30)
+
+telaInicial()
 print('''
 Você é um jovem programador e o seu superior te deu a oportunidade que você estava esperando!
 Você precisa entregar um projeto SUPER importante e tem apenas 24:00 horas para isso!
