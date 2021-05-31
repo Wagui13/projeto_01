@@ -30,9 +30,56 @@ def senhadopc():
 
 def ajudarestagiario():
     print('\nEu acabei trocando a senha de todos os computadores!\nColoquei o nome de uma Linguagem de programação e não consigo me lembrar')
+    ajudar=input('Ajudar a lembrar da senha? S/N: ').upper()
+    if ajudar == 'S':
+        senha = 'python'
+        acertos = 0
+        letras_descobertas = ''
 
-def stackoverflow():
-    print('Você pesquisou no stack overflow')
+        while len(letras_descobertas) != len(senha):
+            mensagem = ''
+            for letra in senha:
+                if letra in letras_descobertas:
+                    mensagem += letra + ' '
+                else:
+                    mensagem += '_'
+            print(mensagem)
+            
+            letra = input('Chute uma letra').lower()
+
+            if letra in senha:
+                print('É, acho que tem essa letra!')
+                letras_descobertas += letra
+                acertos += 1
+            else:
+                print('Hm... acho que não...')
+    else:
+        print ('Que feio! você já foi estagiário um dia!')
+
+
+
+
+def cafeteria():
+    m = random.randint(1, 6)
+    if m == 1:
+        print('Café pra codar!')
+        return -5
+    elif m == 2:
+        print('Esse café ta meio estranho...')
+        return -1
+    elif m ==3:
+        print('...')
+        return -3
+    elif m ==4:
+        print('Estava precisando...')
+        return -6
+    elif m ==5:
+        print('Caféeeee')
+        return -10
+    elif m ==6:
+        print('Um café quentinho pra acordar!')
+        return -3
 
 def codar():
     print('Você está codando!')
+    return 5
