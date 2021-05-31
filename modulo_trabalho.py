@@ -74,7 +74,7 @@ def cafeteria():
         print('Estava precisando...')
         return -6
     elif m ==5:
-        print('Caféeeee')
+        print('Quero Caféeeee')
         return -10
     elif m ==6:
         print('Um café quentinho pra acordar!')
