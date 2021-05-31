@@ -1,21 +1,21 @@
 import modulo_transporte, modulo_trabalho, modulo_telaInicial
 class Relogio:
-    def __init__(self):
+    def __init__(self): #horario que o personagem acorda
         self.horas = 6
         self.minutos = 0
     
-    def __str__(self):
+    def __str__(self): #corrigindo a forma de ler o horario
         return f"Relogio: {self.horas:02d}:{self.minutos:02d}"
     
-    def avancaTempo(self, minutos):
+    def avancaTempo(self, minutos): #função para fazer o tempo passar
         self.minutos += minutos
         while(self.minutos >= 60):
             self.minutos -= 60
             self.horas += 1
 
-class Programador:
+class Programador: #esse são os "atributos" do personagem
     def __init__(self):
-        self.energia = 80
+        self.energia = 80 
         self.sono = 0
         self.fome = 10
         self.saude = 100
@@ -25,10 +25,10 @@ class Programador:
     def __str__(self):
         return f'Energia: {self.energia:02d}\tFome: {self.sono:02d}\nSono: {self.sono:02d}/10\tSaude: {self.saude}\nDinheiro: {self.dinheiro}\tPericia: {self.pericia}'
 
-    def gastaenergia(self, energia):
+    def gastaenergia(self, energia): #função feita para diminuir a "vida" do personagem
         self.energia -= energia
 
-    def sonolento(self, sono=0): 
+    def sonolento(self, sono=0): #essa função é ativada se a energia baixar muito e acelera o processo de perda de energia, prejudiando até a saude
         self.sono += sono
         if self.energia < 50:
             self.sono += 1
@@ -41,36 +41,35 @@ class Programador:
         elif self.sono > 3:
             self.saude -= 2
             
-    def dfome(self, fome=0):
+    def dfome(self, fome=0): #caso o personagem fique com muita fome el acaba perdendo energia
         self.fome += fome
         if self.fome > 30:
-            self.energia -= 1
             self.energia -= 1
         elif self.fome >= 50:
             self.fome -= 4
             self.energia -= 2
 
-    def dsaude(self, saude=100):
+    def dsaude(self, saude=100): #caso a saude chegue em 40 ele vai perdendo mais energia, se chegar a zero também zera a energia e o jogo acaba
         self.saude += saude
         if self.saude < 40:
             self.energia -=1
         elif self.saude == 0:
             self.energia = 0
 
-    def gastadinheiro(self, dinheiro):
+    def gastadinheiro(self, dinheiro): #pra dar uma sensação de realidade, mas ainda não tive como colocar validação
         self.dinheiro -= dinheiro
 
-    def ganhapericia(self, pericia):
+    def ganhapericia(self, pericia): #pericia é a habilidade usada para progredir no projeto, quanto maior a pericia, mais facil ele vai realizar a tarefa
         self.pericia += pericia
 
-class Projeto:
+class Projeto: #o projeto inicia em zero e finaliza o jogo quando fizer 100
     def __init__(self):
         self.progresso = 0
 
     def __str__(self):
         return f'Projeto: {self.progresso:02d}/100'
 
-    def trabalharprojeto(self, pericia):
+    def trabalharprojeto(self, pericia): #quando ele trabalha no projeto os pontos de pericia vão acumulando progresso até bater ou passar de 100
         self.progresso += pericia
 
 if(__name__ == "__main__"):
@@ -79,7 +78,7 @@ if(__name__ == "__main__"):
     personagem = Programador()
     projeto = Projeto()
     casa = True #se casa for True ativará as opções da casa se for False ativará as opções do trabalho
-    senha = False
+    senha = False #se a senha for False é porque o personagem ainda não conseguiu preenchela para ligar o computador
 
 modulo_telaInicial.telaInicial()
 # aqui vamos apresentar as opções ( troquei as funções por prints para melhorar a lógica enquanto desenvolvemos essas funções)
@@ -184,6 +183,7 @@ while casa == False:
                 personagem.gastaenergia(2)
             elif opcao == "3":
                 modulo_trabalho.ajudarestagiario()
+                personagem.gastaenergia(5)
             elif opcao == "4":
                 if personagem.dinheiro > 0:
                     personagem.gastaenergia(modulo_trabalho.cafeteria())
