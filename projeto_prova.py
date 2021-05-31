@@ -5,7 +5,7 @@ class Relogio:
         self.minutos = 0
     
     def __str__(self):
-        return f"\tRelogio:{self.horas:02d}:{self.minutos:02d}"
+        return f"Relogio: {self.horas:02d}:{self.minutos:02d}"
     
     def avancaTempo(self, minutos):
         self.minutos += minutos
@@ -19,7 +19,7 @@ class Programador:
         self.sono = 0
         self.fome = 10
         self.saude = 100
-        self.dinheiro = 1000
+        self.dinheiro = 200
         self.pericia = 1
     
     def __str__(self):
@@ -67,6 +67,12 @@ class Projeto:
     def __init__(self):
         self.progresso = 0
 
+    def __str__(self):
+        return f'Projeto: {self.progresso:02d}/100'
+
+    def trabalharprojeto(self, pericia):
+        self.progresso += pericia
+
 if(__name__ == "__main__"):
     dia = 1
     relogio = Relogio()
@@ -78,10 +84,11 @@ if(__name__ == "__main__"):
 modulo_telaInicial.telaInicial()
 # aqui vamos apresentar as opções ( troquei as funções por prints para melhorar a lógica enquanto desenvolvemos essas funções)
 while casa == True:
-        if relogio.horas < 24 and personagem.energia > 0 and personagem.sono < 10:
+        if relogio.horas < 24 and personagem.energia > 0 and personagem.sono < 10 and projeto.progresso <= 100:
             print('-='*30)
             print(relogio)
-            #personagem.sonolento()
+            print(projeto)
+            personagem.sonolento()
             print(personagem)
             print('-='*30)
             print("Ações:")
@@ -140,11 +147,20 @@ while casa == True:
                 print("Opção inválida!")
         else:
             print('-+-'*15,'GAME OVER','-+-'*15)
+            if relogio.horas >= 24:
+                print ('Essa não! o prazo se esgotou!')
+            elif personagem.energia <= 0:
+                print('Essa não! Saude em primeiro luga! você acabou adoecendo e o projeto foi para outra pessoa!')
+            elif personagem.sono >=10:
+                print('Um carneirinho... Dois carneirinhos... espera aí! você dormiu!')
+            elif projeto.progresso >= 100:
+                print ('Parabéns! Você entregou o projeto! A promoção é sua!')
             break
 while casa == False:
-    if relogio.horas < 24 and personagem.energia > 0 and personagem.sono < 10:
+    if relogio.horas < 24 and personagem.energia > 0 and personagem.sono < 10 and projeto.progresso <= 100:
             print('-='*30)
             print(relogio)
+            print(projeto)
             personagem.sonolento()
             print(personagem)
             print('-='*30)
@@ -153,7 +169,7 @@ while casa == False:
             print("2 - Ligar o Computador")
             print("3 - Ajudar o Estagiário")
             if senha == True:
-                print("4 - Consultar o Stack Overflow")
+                print("4 - Pausa pro café")
                 print("5 - Codar! Codar! Codar!")
             print("0 - Sair do jogo")
             opcao = input("Escolha sua ação:")
@@ -169,9 +185,19 @@ while casa == False:
             elif opcao == "3":
                 modulo_trabalho.ajudarestagiario()
             elif opcao == "4":
-                modulo_trabalho.stackoverflow()
+                if personagem.dinheiro > 0:
+                    personagem.gastaenergia(modulo_trabalho.cafeteria())
+                    personagem.gastadinheiro(5)
+                    personagem.dsaude(-1)
+                else:
+                    print('Você está sem grana!')
+                    personagem.gastaenergia(2)
             elif opcao == "5":
-                modulo_trabalho.codar()
+                projeto.trabalharprojeto(personagem.pericia)
+                personagem.ganhapericia(modulo_trabalho.codar())
+                relogio.avancaTempo(30)
+                personagem.gastaenergia(10)
+
             elif opcao == "0":
                 print('-+-'*15,'GAME OVER','-+-'*15)
                 break
@@ -179,4 +205,12 @@ while casa == False:
                 print("Opção inválida!")
     else:
         print('-+-'*15,'GAME OVER','-+-'*15)
+        if relogio.horas >= 24:
+            print ('Essa não! o prazo se esgotou!')
+        elif personagem.energia <= 0:
+            print('Essa não! Saude em primeiro luga! você acabou adoecendo e o projeto foi para outra pessoa!')
+        elif personagem.sono >=10:
+            print('Um carneirinho... Dois carneirinhos... espera aí! você dormiu!')
+        elif projeto.progresso >= 100:
+            print ('Parabéns! Você entregou o projeto! A promoção é sua!')
         break
