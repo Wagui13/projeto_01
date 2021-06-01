@@ -1,11 +1,11 @@
-import modulo_transporte, modulo_trabalho, modulo_telaInicial
+import modulo_transporte, modulo_trabalho, modulo_telaInicial, cafeDaManha
 class Relogio:
     def __init__(self): #horario que o personagem acorda
         self.horas = 6
         self.minutos = 0
     
     def __str__(self): #corrigindo a forma de ler o horario
-        return f"Relogio: {self.horas:02d}:{self.minutos:02d}"
+        return f"\t\t      Relogio: {self.horas:02d}:{self.minutos:02d}"
     
     def avancaTempo(self, minutos): #função para fazer o tempo passar
         self.minutos += minutos
@@ -23,7 +23,8 @@ class Programador: #esse são os "atributos" do personagem
         self.pericia = 1
     
     def __str__(self):
-        return f'Energia: {self.energia:02d}\tFome: {self.sono:02d}\nSono: {self.sono:02d}/10\tSaude: {self.saude}\nDinheiro: {self.dinheiro}\tPericia: {self.pericia}'
+        return modulo_telaInicial.graficoBarras(self.energia, self.sono, self.fome, self.saude, self.dinheiro, self.pericia)
+        #return f'Energia: {self.energia:02d}\tFome: {self.sono:02d}\nSono: {self.sono:02d}/10\tSaude: {self.saude}\nDinheiro: {self.dinheiro}\tPericia: {self.pericia}'
 
     def gastaenergia(self, energia): #função feita para diminuir a "vida" do personagem
         self.energia -= energia
@@ -67,7 +68,7 @@ class Projeto: #o projeto inicia em zero e finaliza o jogo quando fizer 100
         self.progresso = 0
 
     def __str__(self):
-        return f'Projeto: {self.progresso:02d}/100'
+        return f'\t\t     Projeto:  {self.progresso:02d}/100'
 
     def trabalharprojeto(self, pericia): #quando ele trabalha no projeto os pontos de pericia vão acumulando progresso até bater ou passar de 100
         self.progresso += pericia
@@ -83,6 +84,8 @@ if(__name__ == "__main__"):
 modulo_telaInicial.telaInicial()
 # aqui vamos apresentar as opções ( troquei as funções por prints para melhorar a lógica enquanto desenvolvemos essas funções)
 while casa == True:
+        input()
+        modulo_telaInicial.limparTela()
         if relogio.horas < 24 and personagem.energia > 0 and personagem.sono < 10 and projeto.progresso <= 100:
             print('-='*30)
             print(relogio)
@@ -107,6 +110,7 @@ while casa == True:
                 relogio.avancaTempo(20)
                 personagem.gastaenergia(5)
             elif opcao == "3":
+                personagem.gastadinheiro(cafeDaManha.cafeMenu())
                 print('\nPediu café da manha')#Esta consome tempo
                 relogio.avancaTempo(25)
                 personagem.gastaenergia(1)
@@ -156,6 +160,8 @@ while casa == True:
                 print ('Parabéns! Você entregou o projeto! A promoção é sua!')
             break
 while casa == False:
+    input()
+    modulo_telaInicial.limparTela()
     if relogio.horas < 24 and personagem.energia > 0 and personagem.sono < 10 and projeto.progresso <= 100:
             print('-='*30)
             print(relogio)

@@ -1,7 +1,11 @@
+import os 
+def limparTela():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def telaInicial():
-    import os
-    os.system('color 0a')
-    print("""
+   import os
+   os.system('color 0a')
+   input("""
              _______________________________________________
             /                                               \\
            |    _________________________________________    |
@@ -30,7 +34,14 @@ def telaInicial():
  _-'.-.-.-.-.-. .---.-. .-------------------------. .-.---. .---.-.-.-.`-_
 :-------------------------------------------------------------------------:
 `---._.-------------------------------------------------------------._.---'
+                           -> Press enter to start <-""")
 
-Você é um jovem programador e o seu superior te deu a oportunidade que você estava esperando!
+   print("""Você é um jovem programador e o seu superior te deu a oportunidade que você estava esperando!
 Você precisa entregar um projeto SUPER importante e tem até as 24:00 horas para isso!
 Entregue o projeto e conquiste sua promoção!""")
+
+def graficoBarras(energia, sono, fome, saude, dinheiro, pericia):
+    return f'''Energia |{"█"*(energia//10)} - {energia:02d}{(17 - energia//10)*" "}Fome     |{"█"*(fome//10) if fome > 0 else ""} - {sono:02d}
+    \nSono    |{"█"*sono} - {sono:02d}{(17 - sono)*" "}Saude    |{"█"*(saude//10) if saude > 0 else ""} - {saude}
+    \nPericia |{"█"*pericia} - {pericia}{(17 - pericia)*" "} Dinheiro |{"█"*(dinheiro//10)} - {dinheiro}'''
+
